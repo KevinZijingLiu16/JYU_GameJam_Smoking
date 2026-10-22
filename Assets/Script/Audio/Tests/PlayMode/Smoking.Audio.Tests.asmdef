@@ -1,0 +1,5 @@
+{
+  "name": "Smoking.Audio.Tests",
+  "references": ["Smoking.Audio"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

@@ -1,0 +1,4 @@
+{
+  "name": "Smoking.GameFlow",
+  "references": ["Smoking.Audio", "Unity.TextMeshPro", "Unity.ugui", "Unity.InputSystem"]
+}
