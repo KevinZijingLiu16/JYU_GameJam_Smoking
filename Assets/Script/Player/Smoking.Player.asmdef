@@ -1,4 +1,4 @@
 {
   "name": "Smoking.Player",
-  "references": []
+  "references": ["Smoking.Audio"]
 }

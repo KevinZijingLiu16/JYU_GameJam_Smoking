@@ -27,6 +27,8 @@ namespace Smoking.Audio
         public IMusicPlayer Music => active != null ? active.music : null;
         public ISfxPlayer Sfx => active != null ? active.sfx : null;
         public IAudioVolumeControl Volume => active != null ? active.volume : null;
+        /// <summary>For gameplay pieces with no scene reference to the root; null until one has awoken.</summary>
+        public static ISfxPlayer SharedSfx => active != null ? active.sfx : null;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics() => active = null;

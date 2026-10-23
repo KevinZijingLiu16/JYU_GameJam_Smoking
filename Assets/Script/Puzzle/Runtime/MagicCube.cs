@@ -1,3 +1,4 @@
+using Smoking.Audio;
 using UnityEngine;
 
 namespace Smoking.Puzzle
@@ -14,6 +15,7 @@ namespace Smoking.Puzzle
         [SerializeField] private Collider cube;
         [SerializeField] private float angle = -90f;
         [SerializeField] private float triggerSpinDuration = 0.35f;
+        [SerializeField] private AudioCue rotateSound;
 
         public void OnClicked(RaycastHit hit)
         {
@@ -22,6 +24,7 @@ namespace Smoking.Puzzle
 
             Vector3 axis = trigger == triggerX ? Vector3.right : trigger == triggerY ? Vector3.up : Vector3.forward;
             if (!target.TryRotate(axis, angle)) return;
+            AudioBootstrap.SharedSfx?.Play(rotateSound);
 
             Quaternion from = trigger.localRotation;
             StartCoroutine(RotatableStair.Turn(trigger, from, from * Quaternion.AngleAxis(angle, Vector3.forward), triggerSpinDuration));

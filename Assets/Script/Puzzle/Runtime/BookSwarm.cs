@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Smoking.Audio;
 using UnityEngine;
 
 namespace Smoking.Puzzle
@@ -30,6 +31,12 @@ namespace Smoking.Puzzle
         [SerializeField, Min(1)] private int answerCopies = 2;
         [Tooltip("Wrong books. Use shades close to the answers to make the puzzle harder.")]
         [SerializeField] private List<DecoyBooks> decoys = new List<DecoyBooks>();
+
+        [Header("Sounds")]
+        [SerializeField] private AudioCue rightBookSound;
+        [SerializeField] private AudioCue wrongBookSound;
+        [Tooltip("Every linked segment is solid.")]
+        [SerializeField] private AudioCue solvedSound;
 
         [Header("Books")]
         [Tooltip("Plain book meshes; a Book component and click collider are added at spawn.")]
@@ -98,15 +105,19 @@ namespace Smoking.Puzzle
             if (segment == null)
             {
                 book.Reject();
+                AudioBootstrap.SharedSfx?.Play(wrongBookSound);
                 return;
             }
 
             segment.Claim();
             books.Remove(book);
+            AudioBootstrap.SharedSfx?.Play(rightBookSound);
             book.FlyTo(() => segment.HintPosition, () =>
             {
                 segment.Solidify();
-                if (Solved) Dismiss();
+                if (!Solved) return;
+                Dismiss();
+                AudioBootstrap.SharedSfx?.Play(solvedSound);
             });
         }
 

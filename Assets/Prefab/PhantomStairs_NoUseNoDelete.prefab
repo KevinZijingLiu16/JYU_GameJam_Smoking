@@ -245,12 +245,9 @@ MonoBehaviour:
     count: 3
   - color: {r: 0.2, g: 0.58, b: 0.42, a: 1}
     count: 3
-  - color: {r: 0.65, g: 0.85, b: 0.4, a: 1}
-    count: 3
-  - color: {r: 0.1, g: 0.45, b: 0.3, a: 1}
-    count: 3
-  - color: {r: 0.35, g: 0.65, b: 0.25, a: 1}
-    count: 3
+  rightBookSound: {fileID: 11400000, guid: fc9f8811d388c9c469edac13561f7bb4, type: 2}
+  wrongBookSound: {fileID: 11400000, guid: fa68c080d44e9d540b7b9307407bfb6b, type: 2}
+  solvedSound: {fileID: 11400000, guid: 82486e77419b16c42938f0d4dd09eaf3, type: 2}
   bookPrefabs:
   - {fileID: 100000, guid: cba00f75539bc564fabb9136fccfac6c, type: 3}
   - {fileID: 100000, guid: f9ec2f5b43ac0204199acdb66395048b, type: 3}
@@ -396,6 +393,7 @@ MonoBehaviour:
   hintHeight: 2
   hintBob: 0.12
   popDuration: 0.35
+  solidifySound: {fileID: 0}
 --- !u!1 &1120336427559702206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1685,7 @@ MonoBehaviour:
   hintHeight: 2
   hintBob: 0.12
   popDuration: 0.35
+  solidifySound: {fileID: 11400000, guid: 5885264e13ace784db9e6d836630f60b, type: 2}
 --- !u!1 &3383018181756696825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,6 +1984,7 @@ MonoBehaviour:
   hintHeight: 2
   hintBob: 0.12
   popDuration: 0.35
+  solidifySound: {fileID: 0}
 --- !u!1 &4054599610205647274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,6 +2856,9 @@ MonoBehaviour:
     count: 2
   - color: {r: 1, g: 1, b: 1, a: 1}
     count: 2
+  rightBookSound: {fileID: 11400000, guid: fc9f8811d388c9c469edac13561f7bb4, type: 2}
+  wrongBookSound: {fileID: 11400000, guid: fa68c080d44e9d540b7b9307407bfb6b, type: 2}
+  solvedSound: {fileID: 11400000, guid: 82486e77419b16c42938f0d4dd09eaf3, type: 2}
   bookPrefabs:
   - {fileID: 100000, guid: cba00f75539bc564fabb9136fccfac6c, type: 3}
   - {fileID: 100000, guid: f9ec2f5b43ac0204199acdb66395048b, type: 3}
@@ -3440,6 +3443,7 @@ MonoBehaviour:
   hintHeight: 2
   hintBob: 0.12
   popDuration: 0.35
+  solidifySound: {fileID: 11400000, guid: 5885264e13ace784db9e6d836630f60b, type: 2}
 --- !u!1 &6730076613790690470
 GameObject:
   m_ObjectHideFlags: 0
@@ -3981,6 +3985,7 @@ MonoBehaviour:
   hintHeight: 2
   hintBob: 0.12
   popDuration: 0.35
+  solidifySound: {fileID: 0}
 --- !u!1 &7611451018224353169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4102,6 +4107,7 @@ MonoBehaviour:
   hintHeight: 2
   hintBob: 0.12
   popDuration: 0.35
+  solidifySound: {fileID: 11400000, guid: 5885264e13ace784db9e6d836630f60b, type: 2}
 --- !u!1 &7924032189791998122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4112,7 +4118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5161751853394220902}
   m_Layer: 0
-  m_Name: PhantomStairs
+  m_Name: PhantomStairs_NoUseNoDelete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

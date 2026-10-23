@@ -1,4 +1,5 @@
 using System.Collections;
+using Smoking.Audio;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -27,6 +28,7 @@ namespace Smoking.Puzzle
         [SerializeField] private float hintBob = 0.12f;
 
         [SerializeField] private float popDuration = 0.35f;
+        [SerializeField] private AudioCue solidifySound;
 
         private MeshRenderer[] renderers;
         private Collider[] colliders;
@@ -69,6 +71,7 @@ namespace Smoking.Puzzle
             IsSolid = true;
             if (hint != null) hint.gameObject.SetActive(false);
             SetSolid(true);
+            AudioBootstrap.SharedSfx?.Play(solidifySound);
             StartCoroutine(Pop());
         }
 

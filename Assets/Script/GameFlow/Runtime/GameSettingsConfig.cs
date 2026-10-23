@@ -10,7 +10,7 @@ namespace Smoking.GameFlow
         [Range(0.1f, 1f)] public float defaultBrightness = 1f;
         public string mainMenuScene = "MainMenu";
         [Tooltip("Levels in play order. START GAME opens the first; finishing the last one rolls the credits.")]
-        public string[] levelScenes = { "Level1_Tutorial", "Gameplay_KevinPrototype" };
+        public string[] levelScenes = { "Level1_Tutorial", "Level2" };
         public string creditsScene = "Credits";
         public float MinimumBrightness => Mathf.Clamp(minimumBrightness, 0.1f, 1f);
 

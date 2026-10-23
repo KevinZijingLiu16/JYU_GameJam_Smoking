@@ -1869,7 +1869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87367513348196578}
   m_Layer: 0
-  m_Name: RotatingStaircases
+  m_Name: RotatingStaircases_NoUseNoDelete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

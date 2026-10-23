@@ -1,4 +1,5 @@
 using System.Collections;
+using Smoking.Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ namespace Smoking.Player
         [SerializeField] private PathWalker walker;
         [SerializeField] private Ragdoll ragdoll;
         [SerializeField] private float restartDelay = 2.5f;
+        [SerializeField] private AudioCue fallSound;
 
         private void OnEnable() => walker.LostGround += HandleLostGround;
         private void OnDisable() => walker.LostGround -= HandleLostGround;
@@ -17,6 +19,7 @@ namespace Smoking.Player
         private void HandleLostGround()
         {
             ragdoll.Activate(walker.Velocity);
+            AudioBootstrap.SharedSfx?.Play(fallSound);
             StartCoroutine(RestartAfterDelay());
         }
 
