@@ -3419,7 +3419,7 @@ GameObject:
   - component: {fileID: 936860060}
   - component: {fileID: 936860059}
   m_Layer: 0
-  m_Name: RestartButton
+  m_Name: CreditButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3525,8 +3525,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2125239214}
         m_TargetAssemblyTypeName: Smoking.GameFlow.SceneFlow, Smoking.GameFlow
-        m_MethodName: RestartGame
-        m_Mode: 0
+        m_MethodName: Credits
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
@@ -5801,7 +5801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: RESTART
+  m_text: CREDITS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
   m_sharedMaterial: {fileID: -677182476613678057, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
