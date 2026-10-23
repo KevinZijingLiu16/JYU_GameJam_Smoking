@@ -19,10 +19,13 @@ namespace Smoking.GameFlow
             GameSettingsService.Instance.Music.Play(backgroundMusic, 0.6f);
         }
         public void PlayClick() => GameSettingsService.Instance.Sfx.Play(clickSound);
-        public void StartGame() => Load(GameSettingsService.Instance.Config.gameplayScene);
-        public void RestartGame() => Load(GameSettingsService.Instance.Config.gameplayScene);
+        public void StartGame() => Load(GameSettingsService.Instance.Config.levelScenes[0]);
+        public void RestartGame() => Load(SceneManager.GetActiveScene().name);
         public void MainMenu() => Load(GameSettingsService.Instance.Config.mainMenuScene);
-        public void CompleteGame() => Load(GameSettingsService.Instance.Config.creditsScene);
+        // Finishes the current level: on to the next one, or the credits after the last.
+        public void CompleteGame() => Load(NextScene);
+        public void LoadScene(string scene) => Load(scene);
+        public string NextScene => GameSettingsService.Instance.Config.SceneAfter(SceneManager.GetActiveScene().name);
         private void Load(string scene)
         {
             if (loading) return;
