@@ -1,0 +1,5 @@
+{
+  "name": "Smoking.GameFlow.Editor",
+  "references": ["Smoking.GameFlow", "Smoking.Audio", "Unity.TextMeshPro", "Unity.ugui", "Unity.InputSystem"],
+  "includePlatforms": ["Editor"]
+}

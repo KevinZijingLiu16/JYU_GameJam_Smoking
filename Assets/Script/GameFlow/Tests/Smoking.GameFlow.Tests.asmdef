@@ -1,0 +1,5 @@
+{
+  "name": "Smoking.GameFlow.Tests",
+  "references": ["Smoking.GameFlow", "Smoking.Audio", "Unity.TextMeshPro", "Unity.ugui", "Unity.InputSystem"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}
