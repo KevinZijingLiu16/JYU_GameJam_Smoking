@@ -15,5 +15,5 @@ MonoBehaviour:
   minimumBrightness: 0.35
   defaultBrightness: 1
   mainMenuScene: MainMenu
-  gameplayScene: Gameplay
+  gameplayScene: Gameplay_KevinPrototype
   creditsScene: Credits
