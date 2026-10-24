@@ -26,6 +26,18 @@ namespace Smoking.GameFlow
         [SerializeField] private TMP_Text title;
         [SerializeField] private TMP_Text subtitle;
 
+        [Header("Quote")]
+        [Tooltip("Quote and author; faded in after the title.")]
+        [SerializeField] private CanvasGroup quoteGroup;
+        [Tooltip("Holds the quote with the author on a last, smaller line.")]
+        [SerializeField] private TMP_Text quoteText;
+        [SerializeField] private Color authorColor = new Color(0.863f, 0.624f, 0.408f);
+        [Tooltip("Reading pace used to decide how long a quote stays up.")]
+        [SerializeField] private float charactersPerSecond = 14f;
+        [SerializeField] private Vector2 quoteHoldRange = new Vector2(3.5f, 10f);
+        [Tooltip("Seconds before a key press or click may skip the quote.")]
+        [SerializeField] private float skipDelay = 1f;
+
         private Coroutine hintRoutine;
         private Object hintOwner;
 
@@ -47,6 +59,7 @@ namespace Smoking.GameFlow
             Hide(hintGroup);
             Hide(fadeGroup);
             Hide(titleGroup);
+            if (quoteGroup != null) Hide(quoteGroup);
         }
 
         // Shows `message` until the same owner hides it.
@@ -62,16 +75,42 @@ namespace Smoking.GameFlow
             if (hintOwner == owner) FadeHint(0f);
         }
 
-        // Fades to black with a title card; runs on unscaled time so a paused game cannot stall it.
-        public IEnumerator PlayTransition(string heading, string caption, float fadeTime, float holdTime)
+        // Fades to black with a title card and, if given, a quote that stays up long enough to read
+        // (a key press or click skips it). Runs on unscaled time so a paused game cannot stall it.
+        public IEnumerator PlayTransition(string heading, string caption, string quote, string author, float fadeTime, float holdTime)
         {
             HideHint(hintOwner);
             title.text = heading;
             subtitle.text = caption;
+            bool hasQuote = !string.IsNullOrEmpty(quote) && quoteGroup != null;
+            if (hasQuote)
+            {
+                quoteText.text = string.IsNullOrEmpty(author) ? quote
+                    : $"{quote}\n<size=72%><color=#{ColorUtility.ToHtmlStringRGB(authorColor)}>— {author}</color></size>";
+            }
             fadeGroup.blocksRaycasts = true; // the level is over: swallow clicks so puzzles stop reacting
             yield return Tween(fadeTime, k => fadeGroup.alpha = k);
             yield return Tween(fadeTime, k => titleGroup.alpha = k);
-            yield return new WaitForSecondsRealtime(holdTime);
+            if (!hasQuote)
+            {
+                yield return new WaitForSecondsRealtime(holdTime);
+                yield break;
+            }
+            yield return Tween(fadeTime * 1.5f, k => quoteGroup.alpha = k);
+            float hold = Mathf.Clamp(quote.Length / Mathf.Max(1f, charactersPerSecond), quoteHoldRange.x, quoteHoldRange.y);
+            for (float t = 0f; t < hold; t += Time.unscaledDeltaTime)
+            {
+                if (t > skipDelay && SkipPressed()) break;
+                yield return null;
+            }
+        }
+
+        private static bool SkipPressed()
+        {
+            var keyboard = UnityEngine.InputSystem.Keyboard.current;
+            var pointer = UnityEngine.InputSystem.Pointer.current;
+            return (keyboard != null && keyboard.anyKey.wasPressedThisFrame)
+                || (pointer != null && pointer.press.wasPressedThisFrame);
         }
 
         private void FadeHint(float target)

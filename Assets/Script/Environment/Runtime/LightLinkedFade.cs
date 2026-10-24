@@ -19,7 +19,9 @@ namespace Smoking.Environment
 
         private void Start()
         {
-            renderers = GetComponentsInChildren<Renderer>();
+            // Only glow materials with a base colour can be dimmed this way; lit meshes follow the light anyway.
+            renderers = System.Array.FindAll(GetComponentsInChildren<Renderer>(),
+                r => r.sharedMaterial != null && r.sharedMaterial.HasProperty(BaseColorId));
             baseColors = new Color[renderers.Length];
             for (int i = 0; i < renderers.Length; i++)
                 baseColors[i] = renderers[i].sharedMaterial.GetColor(BaseColorId);
@@ -36,7 +38,9 @@ namespace Smoking.Environment
             for (int i = 0; i < renderers.Length; i++)
             {
                 renderers[i].GetPropertyBlock(block);
-                block.SetColor(BaseColorId, baseColors[i] * new Color(1f, 1f, 1f, k));
+                // Scale colour and alpha alike: alpha-blended additive materials fade through alpha,
+                // One-One additive ones (alpha ignored) through their colour.
+                block.SetColor(BaseColorId, baseColors[i] * k);
                 renderers[i].SetPropertyBlock(block);
             }
         }

@@ -20,6 +20,7 @@ namespace Smoking.Puzzle
         private float spawnHeight;
         private float fallSpeed;
         private int direction = 1;
+        private int startDirection = 1;
         private bool falling;
 
         public event Action Fell;
@@ -43,6 +44,9 @@ namespace Smoking.Puzzle
             failDepth = fallLimit;
         }
 
+        // 1: sets off along the wall's Right (screen-right for the shadow camera); -1: the other way.
+        public void SetStartDirection(int sign) => startDirection = sign < 0 ? -1 : 1;
+
         // Starts again at the real character's feet, as if the shadow just stepped away from it.
         public bool Spawn()
         {
@@ -50,7 +54,7 @@ namespace Smoking.Puzzle
             spawnHeight = position.y;
             falling = false;
             fallSpeed = 0f;
-            direction = 1;
+            direction = startDirection;
             Place();
             return true;
         }

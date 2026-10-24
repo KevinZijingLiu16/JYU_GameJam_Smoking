@@ -487,8 +487,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283864279
-  m_fontColor: {r: 0.8431373, g: 0.5803922, b: 0.3372549, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1893,7 +1893,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Where Magic Happens
+  m_text: Between Steps and Centuries.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
   m_sharedMaterial: {fileID: -677182476613678057, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
@@ -1902,8 +1902,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285046748
-  m_fontColor: {r: 0.8627451, g: 0.62352943, b: 0.40784314, a: 1}
+    rgba: 4293256677
+  m_fontColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2828,8 +2828,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283864279
-  m_fontColor: {r: 0.8431373, g: 0.5803922, b: 0.3372549, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4787,7 +4787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de1307c63f4506c4484b1e45e2af5c04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ca142f92f8b6e548994df0823b50d10, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5092,7 +5092,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de1307c63f4506c4484b1e45e2af5c04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ca142f92f8b6e548994df0823b50d10, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5567,7 +5567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.065, y: 0.55}
   m_AnchorMax: {x: 0.61, y: 0.72}
-  m_AnchoredPosition: {x: 516, y: -95}
+  m_AnchoredPosition: {x: 265, y: -160}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050494386
@@ -5590,17 +5590,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Name
+  m_text: Stairs Through Time
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2c46bce632d4bd84d9156ded1f566ab5, type: 2}
-  m_sharedMaterial: {fileID: -9062904433774069464, guid: 2c46bce632d4bd84d9156ded1f566ab5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
+  m_sharedMaterial: {fileID: -677182476613678057, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284321506
-  m_fontColor: {r: 0.8867924, g: 0.5579234, b: 0.36391956, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5624,7 +5624,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6738,7 +6738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07, y: 0.38}
   m_AnchorMax: {x: 0.55, y: 0.53}
-  m_AnchoredPosition: {x: 706, y: 0}
+  m_AnchoredPosition: {x: 706, y: -239}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1267724972
@@ -6772,8 +6772,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289442207
-  m_fontColor: {r: 0.62352943, g: 0.69411767, b: 0.67058825, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6877,7 +6877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07, y: 0.17}
   m_AnchorMax: {x: 0.5, y: 0.29}
-  m_AnchoredPosition: {x: 634, y: 145}
+  m_AnchoredPosition: {x: 634, y: -94.00003}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275609876
@@ -6900,7 +6900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Theme: Aalto Campus in JYU'
+  m_text: 'Theme: Aalto Campus at JYU'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
   m_sharedMaterial: {fileID: -677182476613678057, guid: c2b41d686d44a9d4f9b22bb8d18e55d3, type: 2}
@@ -6909,8 +6909,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285046748
-  m_fontColor: {r: 0.8627451, g: 0.62352943, b: 0.40784314, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7854,8 +7854,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283864279
-  m_fontColor: {r: 0.8431373, g: 0.5803922, b: 0.3372549, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7991,8 +7991,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283864279
-  m_fontColor: {r: 0.8431373, g: 0.5803922, b: 0.3372549, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9141,7 +9141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de1307c63f4506c4484b1e45e2af5c04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ca142f92f8b6e548994df0823b50d10, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9483,7 +9483,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: de1307c63f4506c4484b1e45e2af5c04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ca142f92f8b6e548994df0823b50d10, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

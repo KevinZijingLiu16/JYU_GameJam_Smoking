@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestBackgroundMusic
   m_EditorClassIdentifier: Smoking.Audio::Smoking.Audio.AudioCue
   clips:
-  - {fileID: 8300000, guid: 46adbba87000db843af8fc138325df9c, type: 3}
+  - {fileID: 8300000, guid: 40081a461437fba499bfeb26d9d1a809, type: 3}
   volume: 0.55
   volumeVariation: {x: 1, y: 1}
   pitchRange: {x: 1, y: 1}

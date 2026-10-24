@@ -40,7 +40,9 @@ namespace Smoking.GameFlow
 
         private IEnumerator Finish()
         {
-            yield return LevelOverlay.Instance.PlayTransition(Heading(), caption, fadeTime, holdTime);
+            var config = GameSettingsService.Instance.Config;
+            string quote = config.QuoteAfter(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            yield return LevelOverlay.Instance.PlayTransition(Heading(), caption, quote, config.quoteAuthor, fadeTime, holdTime);
             flow.CompleteGame();
         }
 

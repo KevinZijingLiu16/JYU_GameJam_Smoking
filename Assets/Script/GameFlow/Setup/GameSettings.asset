@@ -17,5 +17,15 @@ MonoBehaviour:
   mainMenuScene: MainMenu
   levelScenes:
   - Level1_Tutorial
+  - Level2
   - Level3
+  - Level4
+  - Level5
   creditsScene: Credits
+  levelQuotes:
+  - "\u201CHuman life is a combination of tragedy and comedy. The shapes and designs that surround us are the music accompanying this tragedy and this comedy.\u201D"
+  - "\u201CArchitecture belongs to culture, not to civilization.\u201D"
+  - "\u201CEven the smallest daily chore can be humanized with the harmony of culture.\u201D"
+  - "\u201CForm must have a content, and that content must be linked with nature.\u201D"
+  - "\u201CThe ultimate goal of the architect... is to create a paradise. Every house, every product of architecture... should be a fruit of our endeavour to build an earthly paradise for people.\u201D"
+  quoteAuthor: Alvar Aalto

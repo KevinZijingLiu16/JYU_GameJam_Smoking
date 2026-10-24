@@ -53,6 +53,10 @@ namespace Smoking.Puzzle
             colliders = GetComponentsInChildren<Collider>();
             solidMaterial = new Material(solidTemplate) { name = solidTemplate.name + " (" + name + ")" };
             solidMaterial.SetColor("_BaseColor", new Color(requiredColor.r, requiredColor.g, requiredColor.b, 1f));
+            // A glowing template glows in the segment's own color, at the template's strength.
+            if (solidMaterial.IsKeywordEnabled("_EMISSION"))
+                solidMaterial.SetColor("_EmissionColor", new Color(requiredColor.r, requiredColor.g, requiredColor.b)
+                                                        * solidTemplate.GetColor("_EmissionColor").maxColorComponent);
             viewCamera = Camera.main;
             ApplyHintColor();
             SetSolid(false);

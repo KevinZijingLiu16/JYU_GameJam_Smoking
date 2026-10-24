@@ -22,6 +22,8 @@ namespace Smoking.Puzzle
 
         [Header("Scene")]
         [SerializeField] private ShadowWall wall;
+        [Tooltip("Show the wall only during the sequence, e.g. when it would cut through the rest of the level.")]
+        [SerializeField] private bool hideWallOutsidePuzzle = true;
         [SerializeField] private Light spotlight;
         [Tooltip("The spotlight keeps pointing at this, e.g. the middle of the puzzle on the wall. Empty: straight at the wall.")]
         [SerializeField] private Transform lightAim;
@@ -51,6 +53,8 @@ namespace Smoking.Puzzle
         [SerializeField] private Color darkBackground = new Color(0.05f, 0.05f, 0.07f);
 
         [Header("Shadow walker")]
+        [Tooltip("Off: the shadow sets off to the right on screen. On: to the left, e.g. so it heads the same way the character walks.")]
+        [SerializeField] private bool walkLeft;
         [SerializeField] private float characterHeight = 1.7f;
         [Tooltip("Walking speed of the character the shadow belongs to (m/s); the shadow moves this times its magnification.")]
         [SerializeField] private float walkSpeed = 1.2f;
@@ -79,6 +83,9 @@ namespace Smoking.Puzzle
         private readonly Dictionary<Renderer, UnityEngine.Rendering.ShadowCastingMode> castModes =
             new Dictionary<Renderer, UnityEngine.Rendering.ShadowCastingMode>();
         private readonly List<(Light light, float intensity)> worldLights = new List<(Light, float)>();
+        private readonly HashSet<Renderer> shapeRenderers = new HashSet<Renderer>();
+        private readonly List<Renderer> clutter = new List<Renderer>();
+        private readonly List<Canvas> clutterCanvases = new List<Canvas>();
         private State state;
         private ShadowWalker walker;
         private Vector3 lightStart;
@@ -103,6 +110,14 @@ namespace Smoking.Puzzle
             spotlight.intensity = 0f;
             spotlight.enabled = false;
             if (shadowCamera != null) shadowCamera.SetActive(false);
+            // The shadows are worked out mathematically; the wall never needs to be hit by rays or clicks.
+            foreach (var c in wall.GetComponentsInChildren<Collider>()) c.enabled = false;
+            ShowWall(!hideWallOutsidePuzzle);
+        }
+
+        private void ShowWall(bool show)
+        {
+            foreach (var r in wall.GetComponentsInChildren<Renderer>()) r.enabled = show;
         }
 
         private void Update()
@@ -120,11 +135,12 @@ namespace Smoking.Puzzle
         {
             state = State.Playing;
             player.enabled = false; // the animator keeps playing the walk: the character marches in place
+            ShowWall(true);
             AudioBootstrap.SharedSfx?.Play(lightsOffSound);
 
             // Only the puzzle casts shadows now; the floor, the character itself and everything else would clutter the wall.
             // The puzzle pieces themselves turn invisible but keep their shadows, so they don't block the view of the wall.
-            var shapeRenderers = new HashSet<Renderer>();
+            shapeRenderers.Clear();
             foreach (var shape in shapes) shapeRenderers.Add(shape.GetComponent<Renderer>());
             foreach (var r in FindObjectsByType<Renderer>())
             {
@@ -136,6 +152,7 @@ namespace Smoking.Puzzle
 
             walker = CreatePuppet(player.GetComponentInChildren<Animator>().transform);
             walker.Init(wall, spotlight.transform, shapes, player.transform.position, characterHeight, walkSpeed, stepRatio, failDepth);
+            walker.SetStartDirection(walkLeft ? -1 : 1);
             walker.Fell += HandleFell;
             walker.ReachedGoal += HandleGoal;
 
@@ -159,7 +176,44 @@ namespace Smoking.Puzzle
             background = viewCamera.backgroundColor;
             spotlight.enabled = true;
             yield return Fade(0f, 1f);
+            HideClutter();
             walking = true;
+        }
+
+        // Level pieces between the character and the wall would block the shadow camera's view of the
+        // wall: hide them while the world is dark. Puzzle pieces only cast shadows already and stay.
+        private void HideClutter()
+        {
+            float limit = Vector3.Dot(player.transform.position - wall.Origin, wall.Normal) - 0.5f;
+            Vector3 n = wall.Normal;
+            foreach (var r in FindObjectsByType<Renderer>())
+            {
+                if (!r.enabled || shapeRenderers.Contains(r) || r.transform.IsChildOf(wall.transform)
+                    || r.transform.IsChildOf(walker.transform) || r.transform.IsChildOf(player.transform)) continue;
+                Bounds b = r.bounds;
+                float depth = Vector3.Dot(b.center - wall.Origin, n);
+                float reach = Mathf.Abs(b.extents.x * n.x) + Mathf.Abs(b.extents.y * n.y) + Mathf.Abs(b.extents.z * n.z);
+                if (depth + reach <= 0f || depth - reach >= limit) continue;
+                r.enabled = false;
+                clutter.Add(r);
+            }
+            // World-space UI such as puzzle hint badges is not a Renderer but blocks the view just the same.
+            foreach (var c in FindObjectsByType<Canvas>())
+            {
+                if (!c.enabled || c.renderMode != RenderMode.WorldSpace || c.transform.IsChildOf(transform)) continue;
+                float depth = Vector3.Dot(c.transform.position - wall.Origin, n);
+                if (depth <= 0f || depth >= limit) continue;
+                c.enabled = false;
+                clutterCanvases.Add(c);
+            }
+        }
+
+        private void ShowClutter()
+        {
+            foreach (var r in clutter) if (r != null) r.enabled = true;
+            foreach (var c in clutterCanvases) if (c != null) c.enabled = true;
+            clutter.Clear();
+            clutterCanvases.Clear();
         }
 
         private void HandleFell()
@@ -197,9 +251,11 @@ namespace Smoking.Puzzle
                 StartCoroutine(RotatableStair.Turn(lever, from, from * Quaternion.Euler(leverTurn), 0.3f));
             }
             yield return new WaitForSeconds(leverHoldTime);
+            ShowClutter();
             if (shadowCamera != null) shadowCamera.SetActive(false);
             yield return Fade(1f, 0f);
             spotlight.enabled = false;
+            if (hideWallOutsidePuzzle) ShowWall(false);
             Destroy(walker.gameObject);
             foreach (var pair in castModes) if (pair.Key != null) pair.Key.shadowCastingMode = pair.Value;
             castModes.Clear();
