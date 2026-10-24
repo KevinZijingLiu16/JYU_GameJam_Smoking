@@ -33,6 +33,9 @@ namespace Smoking.GameFlow
         {
             if (done) return;
             done = true;
+            // The level is over: the character stops here instead of walking on along its path.
+            var walker = player != null ? player.GetComponent<Smoking.Player.PathWalker>() : null;
+            if (walker != null) walker.enabled = false;
             reached?.Invoke();
             GameSettingsService.Instance.Sfx.Play(completedSound);
             StartCoroutine(Finish());

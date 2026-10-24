@@ -14,6 +14,8 @@ namespace Smoking.GameFlow
         [SerializeField] private GameObject homeSelection;
         [SerializeField] private GameObject settingsSelection;
         [SerializeField] private GameObject pauseSelection;
+        [SerializeField] private GameObject levelSelectPanel;
+        [SerializeField] private GameObject levelSelectSelection;
         private float previousTimeScale = 1f;
         private CursorLockMode previousLock;
         private bool previousCursor;
@@ -27,6 +29,7 @@ namespace Smoking.GameFlow
         public void HandleEscape()
         {
             if (settingsPanel.activeSelf) { CloseSettings(); return; }
+            if (levelSelectPanel != null && levelSelectPanel.activeSelf) { CloseLevelSelect(); return; }
             if (!gameplay) return;
             if (IsPaused) Resume(); else Pause();
         }
@@ -43,6 +46,19 @@ namespace Smoking.GameFlow
             settingsPanel.SetActive(false);
             if (gameplay) { pausePanel.SetActive(true); Select(pauseSelection); }
             else { homePanel.SetActive(true); Select(homeSelection); }
+        }
+        // Main menu only: lets the player jump straight into any level.
+        public void OpenLevelSelect()
+        {
+            if (homePanel != null) homePanel.SetActive(false);
+            levelSelectPanel.SetActive(true);
+            Select(levelSelectSelection);
+        }
+        public void CloseLevelSelect()
+        {
+            levelSelectPanel.SetActive(false);
+            if (homePanel != null) homePanel.SetActive(true);
+            Select(homeSelection);
         }
         public void Pause()
         {

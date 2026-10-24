@@ -20,6 +20,8 @@ namespace Smoking.GameFlow
         }
         public void PlayClick() => GameSettingsService.Instance.Sfx.Play(clickSound);
         public void StartGame() => Load(GameSettingsService.Instance.Config.levelScenes[0]);
+        // Level select: index into GameSettings' level order (0 = the first level).
+        public void StartLevel(int index) => Load(GameSettingsService.Instance.Config.levelScenes[index]);
         public void RestartGame() => Load(SceneManager.GetActiveScene().name);
         public void MainMenu() => Load(GameSettingsService.Instance.Config.mainMenuScene);
         public void Credits() => Load(GameSettingsService.Instance.Config.creditsScene);
