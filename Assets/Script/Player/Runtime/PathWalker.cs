@@ -18,6 +18,8 @@ namespace Smoking.Player
         [SerializeField] private float turnSpeed = 540f;
         [Tooltip("After a wall turns the walker around, it backs off this far along the path and then tries again. 0: walks back until something else turns it.")]
         [SerializeField] private float retreatDistance = 2f;
+        [Tooltip("Playtesting (Editor only): start from the path point nearest to where the character is placed, instead of the path start.")]
+        [SerializeField] private bool startWherePlaced;
 
         [Header("Ground")]
         [SerializeField] private LayerMask groundMask = ~0;
@@ -52,7 +54,8 @@ namespace Smoking.Player
             if (animator == null) animator = GetComponentInChildren<Animator>();
             if (animator != null) animator.applyRootMotion = false;
 
-            Vector3 start = path.Evaluate(0f, out Vector3 forward);
+            if (startWherePlaced && Application.isEditor) distance = path.ClosestDistance(transform.position);
+            Vector3 start = path.Evaluate(distance, out Vector3 forward);
             groundHeight = start.y;
             if (TryGround(start, out float y)) groundHeight = y;
             transform.position = new Vector3(start.x, groundHeight, start.z);
