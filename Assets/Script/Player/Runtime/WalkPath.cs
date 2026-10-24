@@ -49,6 +49,20 @@ namespace Smoking.Player
             return Vector3.Lerp(a, b, t);
         }
 
+        // Distance along the path of the path point nearest to `point`.
+        public float ClosestDistance(Vector3 point)
+        {
+            float best = 0f, bestSqr = float.MaxValue;
+            for (int i = 1; i < points.Count; i++)
+            {
+                Vector3 a = points[i - 1], ab = points[i] - a;
+                float t = ab.sqrMagnitude > 0f ? Mathf.Clamp01(Vector3.Dot(point - a, ab) / ab.sqrMagnitude) : 0f;
+                float sqr = (a + ab * t - point).sqrMagnitude;
+                if (sqr < bestSqr) { bestSqr = sqr; best = distances[i - 1] + ab.magnitude * t; }
+            }
+            return best;
+        }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = gizmoColor;

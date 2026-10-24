@@ -83,6 +83,7 @@ namespace Smoking.Puzzle
         private ShadowWalker walker;
         private Vector3 lightStart;
         private float ambient;
+        private Color ambientColor, fogColor;
         private Color background;
         private Camera viewCamera;
         private float cameraX, cameraVelocity, cameraY;
@@ -153,6 +154,8 @@ namespace Smoking.Puzzle
             foreach (var l in FindObjectsByType<Light>())
                 if (l != spotlight && l.enabled) worldLights.Add((l, l.intensity));
             ambient = RenderSettings.ambientIntensity;
+            ambientColor = RenderSettings.ambientLight; // used instead of the intensity by Flat ambient
+            fogColor = RenderSettings.fogColor;
             background = viewCamera.backgroundColor;
             spotlight.enabled = true;
             yield return Fade(0f, 1f);
@@ -218,6 +221,8 @@ namespace Smoking.Puzzle
         {
             foreach (var (l, intensity) in worldLights) if (l != null) l.intensity = Mathf.Lerp(intensity, 0f, k);
             RenderSettings.ambientIntensity = Mathf.Lerp(ambient, darkAmbient, k);
+            RenderSettings.ambientLight = Color.Lerp(ambientColor, ambientColor * darkAmbient, k);
+            RenderSettings.fogColor = Color.Lerp(fogColor, darkBackground, k);
             viewCamera.backgroundColor = Color.Lerp(background, darkBackground, k);
             spotlight.intensity = spotIntensity * k;
         }
