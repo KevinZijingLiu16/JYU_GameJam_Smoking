@@ -6498,6 +6498,7 @@ MonoBehaviour:
   speed: 1.4
   endMode: 3
   turnSpeed: 540
+  retreatDistance: 2
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295

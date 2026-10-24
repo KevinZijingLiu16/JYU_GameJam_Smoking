@@ -17,5 +17,5 @@ MonoBehaviour:
   mainMenuScene: MainMenu
   levelScenes:
   - Level1_Tutorial
-  - Level2
+  - Level3
   creditsScene: Credits
