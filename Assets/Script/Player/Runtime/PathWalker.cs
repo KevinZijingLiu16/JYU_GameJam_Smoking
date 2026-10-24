@@ -16,6 +16,8 @@ namespace Smoking.Player
         [Tooltip("WalkOff keeps going straight past the last waypoint, off the edge.")]
         [SerializeField] private EndMode endMode = EndMode.WalkOff;
         [SerializeField] private float turnSpeed = 540f;
+        [Tooltip("After a wall turns the walker around, it backs off this far along the path and then tries again. 0: walks back until something else turns it.")]
+        [SerializeField] private float retreatDistance = 2f;
 
         [Header("Ground")]
         [SerializeField] private LayerMask groundMask = ~0;
@@ -39,6 +41,8 @@ namespace Smoking.Player
         private int direction = 1;
         private bool stopped;
         private float groundHeight;
+        // While backing off from a wall, the distance at which the walker heads forward again.
+        private float retreatUntil = float.NegativeInfinity;
 
         public event Action LostGround;
         public Vector3 Velocity { get; private set; }
@@ -61,6 +65,11 @@ namespace Smoking.Player
 
             float previousDistance = distance;
             distance += speed * direction * Time.deltaTime;
+            if (direction < 0 && distance <= retreatUntil)
+            {
+                direction = 1;
+                retreatUntil = float.NegativeInfinity;
+            }
             if (distance >= path.Length || distance <= 0f) HandlePathEnd();
 
             Vector3 target = path.Evaluate(distance, out Vector3 forward);
@@ -71,6 +80,7 @@ namespace Smoking.Player
             if (IsWallAhead(target, forward))
             {
                 distance = previousDistance;
+                retreatUntil = direction > 0 && retreatDistance > 0f ? distance - retreatDistance : float.NegativeInfinity;
                 direction = -direction;
                 return;
             }
@@ -104,6 +114,7 @@ namespace Smoking.Player
                 case EndMode.PingPong:
                     distance = Mathf.Clamp(distance, 0f, path.Length);
                     direction = -direction;
+                    retreatUntil = float.NegativeInfinity;
                     break;
                 case EndMode.Loop:
                     distance = Mathf.Repeat(distance, path.Length);

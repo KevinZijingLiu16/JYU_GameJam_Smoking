@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 4472406238565875264}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &2998124380780060921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   speed: 1.4
   endMode: 3
   turnSpeed: 540
+  retreatDistance: 5
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -76,6 +77,7 @@ MonoBehaviour:
   walker: {fileID: 2998124380780060921}
   ragdoll: {fileID: 7383062341408787204}
   restartDelay: 2.5
+  fallSound: {fileID: 0}
 --- !u!1001 &4151075009383160235
 PrefabInstance:
   m_ObjectHideFlags: 0

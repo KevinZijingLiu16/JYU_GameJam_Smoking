@@ -226,8 +226,9 @@ namespace Smoking.Puzzle
         {
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
-            float side = (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed ? 1f : 0f)
-                       - (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed ? 1f : 0f);
+            // A / D push the shadows left / right on screen, which means moving the light the other way.
+            float side = (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed ? 1f : 0f)
+                       - (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed ? 1f : 0f);
             float depth = (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed ? 1f : 0f)
                         - (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed ? 1f : 0f);
             if (side == 0f && depth == 0f) return;
