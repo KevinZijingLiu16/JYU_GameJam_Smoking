@@ -8,6 +8,7 @@ namespace Smoking.Puzzle
     public sealed class Book : MonoBehaviour, IClickable
     {
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+        private static readonly int EmissionColorId = Shader.PropertyToID("_EmissionColor");
 
         private BookSwarm swarm;
         private Vector3 velocity;
@@ -20,7 +21,8 @@ namespace Smoking.Puzzle
 
         public Color Tint { get; private set; }
 
-        public void Init(BookSwarm owner, Color color, float scale, float minSpeed, float maxSpeed)
+        // glow: how much the book lights itself in its own color, so dark or tinted scenes can't shift it.
+        public void Init(BookSwarm owner, Color color, float scale, float minSpeed, float maxSpeed, float glow)
         {
             swarm = owner;
             Tint = color;
@@ -33,6 +35,7 @@ namespace Smoking.Puzzle
 
             var block = new MaterialPropertyBlock();
             block.SetColor(BaseColorId, new Color(color.r, color.g, color.b, 1f));
+            block.SetColor(EmissionColorId, new Color(color.r, color.g, color.b, 1f) * glow);
             GetComponent<Renderer>().SetPropertyBlock(block);
             StartCoroutine(ScaleTo(0f, scale, 0.3f));
         }
