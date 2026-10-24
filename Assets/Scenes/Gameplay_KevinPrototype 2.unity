@@ -12619,6 +12619,120 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac737656382d0b742b4e5f11af594eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Smoking.Player::Smoking.Player.PathWalker
+--- !u!1001 &5010680205702938315
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2286334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7591218152509792310, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9196366748696296170, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+      propertyPath: m_Name
+      value: RotatingPhantomStairs
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 324b52ed225b1af4494f628b921e911e, type: 3}
+--- !u!1001 &5423161841799141293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138584005440168885, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277453106169006914, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
+      propertyPath: m_Name
+      value: RotatingPhantomStairs_2Colors
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 605a86f9f1be86941af71f0dfd3d5317, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -12640,3 +12754,5 @@ SceneRoots:
   - {fileID: 1039643831}
   - {fileID: 1663314563}
   - {fileID: 15356458}
+  - {fileID: 5010680205702938315}
+  - {fileID: 5423161841799141293}
