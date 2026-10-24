@@ -1,4 +1,4 @@
 {
   "name": "Smoking.Puzzle",
-  "references": ["Unity.InputSystem", "Unity.ugui", "Smoking.Audio"]
+  "references": ["Unity.InputSystem", "Unity.ugui", "Smoking.Audio", "Smoking.Player"]
 }
