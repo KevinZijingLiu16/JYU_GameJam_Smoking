@@ -43,6 +43,8 @@ namespace Smoking.Puzzle
         [SerializeField] private GameObject[] bookPrefabs;
         [SerializeField] private Material bookMaterial;
         [SerializeField] private float bookScale = 3.5f;
+        [Tooltip("Books light themselves in their own color, so they read true in dark or tinted levels. Needs emission on the book material.")]
+        [SerializeField, Range(0f, 1f)] private float bookGlow = 0.6f;
         [SerializeField] private float minSpeed = 1.5f;
         [SerializeField] private float maxSpeed = 3.5f;
         [Tooltip("Click collider size relative to the book mesh: bigger is more forgiving.")]
@@ -162,7 +164,10 @@ namespace Smoking.Puzzle
             go.name = "Book_" + ColorUtility.ToHtmlStringRGB(color);
             go.transform.localPosition = Vector3.Scale(
                 new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)), Extents);
-            if (bookMaterial != null) go.GetComponent<Renderer>().sharedMaterial = bookMaterial;
+            var bookRenderer = go.GetComponent<Renderer>();
+            if (bookMaterial != null) bookRenderer.sharedMaterial = bookMaterial;
+            // The books hang in front of the camera, far above the floor: their shadows only read as dark clutter.
+            bookRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
             var mesh = go.GetComponent<MeshFilter>().sharedMesh;
             var box = go.AddComponent<BoxCollider>();
@@ -171,7 +176,7 @@ namespace Smoking.Puzzle
             box.size = mesh.bounds.size * clickPadding;
 
             var book = go.AddComponent<Book>();
-            book.Init(this, color, bookScale, minSpeed, maxSpeed);
+            book.Init(this, color, bookScale, minSpeed, maxSpeed, bookGlow);
             books.Add(book);
         }
 
