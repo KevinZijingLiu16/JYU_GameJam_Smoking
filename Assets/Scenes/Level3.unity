@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.7, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3345,7 +3345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4303,7 +4303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9c2c0b116f66347823db508859c3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Smoking.Puzzle::Smoking.Puzzle.PhantomSegment
-  requiredColor: {r: 1, g: 0, b: 0, a: 1}
+  requiredColor: {r: 0, g: 1, b: 0, a: 1}
   phantomMaterial: {fileID: 2100000, guid: 88ab9b5ae081cfc4db53e45ab32d2885, type: 2}
   solidTemplate: {fileID: 2100000, guid: 5645aa161b920e6488435b24102cb194, type: 2}
   hint: {fileID: 800604985}

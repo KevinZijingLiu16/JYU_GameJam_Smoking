@@ -10610,6 +10610,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1231025714}
     - target: {fileID: 5087445742800722624, guid: 8bb5572b17a43b242bf288b59dfca091, type: 3}
+      propertyPath: bookScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087445742800722624, guid: 8bb5572b17a43b242bf288b59dfca091, type: 3}
       propertyPath: viewCamera
       value: 
       objectReference: {fileID: 647690837}
