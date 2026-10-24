@@ -1411,6 +1411,7 @@ MonoBehaviour:
   cube: {fileID: 1182055903488464637}
   angle: -90
   triggerSpinDuration: 0.35
+  rotateSound: {fileID: 0}
 --- !u!1 &5684474156705256278
 GameObject:
   m_ObjectHideFlags: 0

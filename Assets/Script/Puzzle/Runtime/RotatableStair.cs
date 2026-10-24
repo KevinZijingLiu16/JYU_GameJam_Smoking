@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Smoking.Puzzle
 {
-    // A level piece that turns around its own local X / Y / Z axis in 90° steps.
+    // A level piece that turns in 90° steps around axes given by its controller (the magic cube),
+    // whatever way the piece itself was rotated in the editor.
     // Put the pivot (this Transform) at the piece's center so it turns in place.
     public sealed class RotatableStair : MonoBehaviour
     {
@@ -15,12 +16,14 @@ namespace Smoking.Puzzle
 
         private void Awake() => targetRotation = transform.localRotation;
 
+        // Turns around a world-space axis through the pivot; the axis does not follow earlier turns.
         // Returns false while a previous turn is still playing.
-        public bool TryRotate(Vector3 localAxis, float angle)
+        public bool TryRotate(Vector3 worldAxis, float angle)
         {
             if (IsRotating) return false;
+            Vector3 axis = transform.parent != null ? transform.parent.InverseTransformDirection(worldAxis) : worldAxis;
             Quaternion from = targetRotation;
-            targetRotation = from * Quaternion.AngleAxis(angle, localAxis);
+            targetRotation = Quaternion.AngleAxis(angle, axis) * from;
             StartCoroutine(Turn(transform, from, targetRotation, duration, () => IsRotating = false));
             IsRotating = true;
             return true;

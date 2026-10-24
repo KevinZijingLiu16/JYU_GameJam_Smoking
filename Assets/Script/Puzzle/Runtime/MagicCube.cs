@@ -4,8 +4,8 @@ using UnityEngine;
 namespace Smoking.Puzzle
 {
     // The magic cube under a staircase. Each face carries a trigger (TriggerX / TriggerY / TriggerZ);
-    // clicking a trigger, or the cube face it sits on, turns the staircase -90° around that local
-    // axis and spins the trigger itself -90° around its own Z.
+    // clicking a trigger, or the cube face it sits on, turns the staircase -90° around the cube's
+    // matching axis and spins the trigger itself -90° around its own Z.
     public sealed class MagicCube : MonoBehaviour, IClickable
     {
         [SerializeField] private RotatableStair target;
@@ -22,7 +22,9 @@ namespace Smoking.Puzzle
             Transform trigger = FindTrigger(hit);
             if (trigger == null || target == null) return;
 
-            Vector3 axis = trigger == triggerX ? Vector3.right : trigger == triggerY ? Vector3.up : Vector3.forward;
+            // The staircase always turns around the cube's own X / Y / Z, so the two stay in sync
+            // however the staircase was rotated in the editor or by earlier turns.
+            Vector3 axis = trigger == triggerX ? transform.right : trigger == triggerY ? transform.up : transform.forward;
             if (!target.TryRotate(axis, angle)) return;
             AudioBootstrap.SharedSfx?.Play(rotateSound);
 
