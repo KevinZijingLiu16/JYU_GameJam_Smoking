@@ -76,7 +76,7 @@ namespace Smoking.Puzzle
 
             float move = speed * Scale * dt;
             float ahead = position.x + direction * (move + height * 0.15f);
-            if (Blocked(ahead, position.y + step, position.y + height * 0.9f))
+            if (Blocked(position.x, ahead, position.y + step, position.y + height * 0.9f))
             {
                 direction = -direction;
                 return;
@@ -128,12 +128,17 @@ namespace Smoking.Puzzle
             return top > float.MinValue;
         }
 
-        private bool Blocked(float x, float from, float to)
+        // A shadow that has already slid over the body (the light moved) doesn't count: otherwise it
+        // blocks both ways, the walker turns around every frame and marches in place forever.
+        private bool Blocked(float x, float ahead, float from, float to)
         {
             foreach (var s in shapes)
-                if (s.Solid && s.SpanAt(x, out float b, out float t) && t > from && b < to) return true;
+                if (s.Solid && Overlaps(s, ahead, from, to) && !Overlaps(s, x, from, to)) return true;
             return false;
         }
+
+        private static bool Overlaps(ShadowShape s, float x, float from, float to) =>
+            s.SpanAt(x, out float b, out float t) && t > from && b < to;
 
         // Put the shadow-only puppet on the light ray through the walker's feet, at the anchor's depth.
         private void Place()

@@ -35,6 +35,7 @@ namespace Smoking.GameFlow
             if (!Application.CanStreamedLevelBeLoaded(scene))
             { Debug.LogError($"Scene '{scene}' must be enabled in Build Profiles."); return; }
             loading = true;
+            Smoking.Player.RespawnPoint.Clear();
             Time.timeScale = 1f;
             AudioListener.pause = false;
             GameSettingsService.Instance.Save();

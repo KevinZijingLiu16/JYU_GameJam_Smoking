@@ -54,7 +54,8 @@ namespace Smoking.Player
             if (animator == null) animator = GetComponentInChildren<Animator>();
             if (animator != null) animator.applyRootMotion = false;
 
-            if (startWherePlaced && Application.isEditor) distance = path.ClosestDistance(transform.position);
+            if (RespawnPoint.TryGet(out Vector3 checkpoint)) distance = path.ClosestDistance(checkpoint);
+            else if (startWherePlaced && Application.isEditor) distance = path.ClosestDistance(transform.position);
             Vector3 start = path.Evaluate(distance, out Vector3 forward);
             groundHeight = start.y;
             if (TryGround(start, out float y)) groundHeight = y;

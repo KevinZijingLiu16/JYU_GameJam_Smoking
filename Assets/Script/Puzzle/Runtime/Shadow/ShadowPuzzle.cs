@@ -228,6 +228,11 @@ namespace Smoking.Puzzle
         {
             walker.gameObject.SetActive(false);
             yield return new WaitForSeconds(respawnDelay);
+            // The start ledge lies under the feet only with the light where it began; spawning with the
+            // light moved away would drop the shadow into nothing and fall again, forever.
+            spotlight.transform.position = lightStart;
+            AimLight();
+            foreach (var shape in shapes) shape.Rebuild(wall, spotlight.transform.position);
             walker.gameObject.SetActive(true);
             walker.Spawn();
             walking = true;
